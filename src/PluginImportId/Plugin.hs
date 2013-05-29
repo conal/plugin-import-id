@@ -23,7 +23,6 @@ import GhcPlugins
 import IfaceEnv (lookupOrigNameCache)
 import qualified OccName as ON
 
-
 type X a = a -> CoreM a
 
 plugin :: Plugin
@@ -48,7 +47,7 @@ makePrelVar :: NameSpace -> String -> CoreM Var
 makePrelVar ns str =
   do nsc <- getOrigNameCache
      let name :: Name
-         name = fromMaybe (error ("mkPrelName: Didn't find " ++ str)) $
+         name = fromMaybe (error ("mkPrelVar: Didn't find " ++ str)) $
                 lookupOrigNameCache nsc prelMod (mkOccName ns str)
      lookupId name
 
